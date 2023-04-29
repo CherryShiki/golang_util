@@ -1,4 +1,4 @@
-module cc
+module github.com/CherryShiki/golang_util
 
 go 1.20
 
