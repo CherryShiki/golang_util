@@ -13,7 +13,7 @@ func NewZapLog(config ...ZapLogConfig) *zap.SugaredLogger {
 	var cfg = configDefault(config...)
 
 	encoderConfig := zap.NewDevelopmentEncoderConfig()
-	encoderConfig.EncodeTime = zapcore.TimeEncoderOfLayout("2006-01-02 15:04:05")
+	encoderConfig.EncodeTime = zapcore.TimeEncoderOfLayout(cfg.TimeLayout)
 	encoderConfig.EncodeLevel = zapcore.CapitalLevelEncoder
 	encoderConfig.EncodeCaller = zapcore.ShortCallerEncoder
 	encoder := zapcore.NewConsoleEncoder(encoderConfig)

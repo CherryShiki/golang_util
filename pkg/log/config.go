@@ -1,6 +1,7 @@
 package log
 
 type ZapLogConfig struct {
+	TimeLayout   string // 时间格式，默认："2006-01-02 15:04:05"
 	Filepath     string // 日志文件夹路径，默认："./log"
 	MaxSize      int    // 单文件最大大小，默认：20mb
 	MaxBackups   int    // 日志文件的最大数量，默认：5个
@@ -12,6 +13,7 @@ type ZapLogConfig struct {
 }
 
 var defaultZapLogConfig = ZapLogConfig{
+	TimeLayout:   "2006-01-02 15:04:05",
 	Filepath:     "./log",
 	MaxSize:      20,
 	MaxBackups:   5,
@@ -28,6 +30,9 @@ func configDefault(config ...ZapLogConfig) ZapLogConfig {
 	}
 
 	cfg := config[0]
+	if cfg.TimeLayout == "" {
+		cfg.TimeLayout = defaultZapLogConfig.TimeLayout
+	}
 	if cfg.Filepath == "" {
 		cfg.Filepath = defaultZapLogConfig.Filepath
 	}
